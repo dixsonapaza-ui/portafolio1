@@ -1,0 +1,49 @@
+  <!-- Footer -->
+  <footer class="bg-dark-800 border-t border-white/[0.06] pt-12 pb-6 mt-auto">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+
+        <!-- Brand -->
+        <div>
+          <div class="font-mono text-xl font-bold mb-2">
+            <span class="text-brand">&lt;</span><span class="text-white">DA</span><span class="text-brand">/&gt;</span>
+          </div>
+          <p class="text-sm text-gray-400">Backend Developer Jr | APIs REST | Django | Node.js</p>
+          <p class="text-xs text-gray-500 mt-1 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-brand"></i> Arequipa, Perú</p>
+        </div>
+
+        <!-- Nav links -->
+        <div>
+          <h4 class="text-sm font-bold text-white mb-3">Navegación</h4>
+          <div class="flex flex-col gap-1.5">
+            <% [['/', 'Inicio'], ['/sobre-mi','Sobre mí'], ['/experiencia','Experiencia'], ['/educacion','Educación'], ['/habilidades','Habilidades'], ['/proyectos','Proyectos'], ['/contactame','Contacto']].forEach(([href, label]) => { %>
+            <a href="<%= href %>" class="text-sm text-gray-400 hover:text-brand hover:pl-1 transition-all"><%= label %></a>
+            <% }) %>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-sm font-bold text-white mb-3">Contacto</h4>
+          <div class="flex flex-col gap-2 mb-4">
+            <a href="mailto:dixson.apaza@tecsup.edu.pe" class="text-sm text-gray-400 hover:text-brand transition-colors flex items-center gap-2"><i class="fas fa-envelope"></i> dixson.apaza@tecsup.edu.pe</a>
+            <a href="tel:+51955724530" class="text-sm text-gray-400 hover:text-brand transition-colors flex items-center gap-2"><i class="fas fa-phone"></i> +51 955724530</a>
+          </div>
+          <div class="flex gap-2">
+            <a href="mailto:dixson.apaza@tecsup.edu.pe" class="w-9 h-9 rounded-lg bg-dark-700 border border-white/[0.06] flex items-center justify-center text-gray-400 hover:text-brand hover:border-brand/40 hover:-translate-y-0.5 transition-all" aria-label="Email"><i class="fas fa-envelope text-sm"></i></a>
+            <a href="https://www.linkedin.com/in/yonay" target="_blank" class="w-9 h-9 rounded-lg bg-dark-700 border border-white/[0.06] flex items-center justify-center text-gray-400 hover:text-brand hover:border-brand/40 hover:-translate-y-0.5 transition-all" aria-label="LinkedIn"><i class="fab fa-linkedin text-sm"></i></a>
+            <a href="https://github.com/dixsonapaza-ui" target="_blank" class="w-9 h-9 rounded-lg bg-dark-700 border border-white/[0.06] flex items-center justify-center text-gray-400 hover:text-brand hover:border-brand/40 hover:-translate-y-0.5 transition-all" aria-label="GitHub"><i class="fab fa-github text-sm"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/[0.06] pt-5 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-500">
+        <p>&copy; 2025 Dixson Yonay Apaza Quilla. Todos los derechos reservados.</p>
+        <p class="flex items-center gap-1.5">Desarrollado con <span class="animate-heartbeat text-pink">♥</span> usando <i class="fab fa-node-js text-green-500"></i> Node.js + Express + EJS</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

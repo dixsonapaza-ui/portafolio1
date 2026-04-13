@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno (¡NUNCA subir esto!)
+.env
+
+# Archivos de análisis/datos locales
+excel_output.txt
+excel_data.json
+generate_data.js
+generate_survey.js
+analyze_excel.js
+*.xlsx
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portafolio de Dixson Apaza – Backend Developer Jr especializado en Django, Node.js y APIs REST." />
+  <title><%= title %></title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Devicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/css/main.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+</head>
+<body class="<%= page %>-page">
+
+  <!-- Noise overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-name">DA</span>
+        <span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/" class="nav-link <%= page === 'home' ? 'active' : '' %>"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a href="/sobre-mi" class="nav-link <%= page === 'about' ? 'active' : '' %>"><i class="fas fa-user"></i> Sobre mí</a></li>
+        <li><a href="/experiencia" class="nav-link <%= page === 'experience' ? 'active' : '' %>"><i class="fas fa-briefcase"></i> Experiencia</a></li>
+        <li><a href="/educacion" class="nav-link <%= page === 'education' ? 'active' : '' %>"><i class="fas fa-graduation-cap"></i> Educación</a></li>
+        <li><a href="/habilidades" class="nav-link <%= page === 'skills' ? 'active' : '' %>"><i class="fas fa-code"></i> Habilidades</a></li>
+        <li><a href="/proyectos" class="nav-link <%= page === 'projects' ? 'active' : '' %>"><i class="fas fa-rocket"></i> Proyectos</a></li>
+        <li><a href="/contactame" class="nav-link nav-cta <%= page === 'contact' ? 'active' : '' %>"><i class="fas fa-envelope"></i> Contáctame</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <%- body %>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-name">Dixson Apaza</span>
+          <span class="logo-bracket">/&gt;</span>
+          <p>Backend Developer Jr | APIs REST | Django | Node.js</p>
+        </div>
+        <div class="footer-links">
+          <a href="/" class="footer-link">Inicio</a>
+          <a href="/sobre-mi" class="footer-link">Sobre mí</a>
+          <a href="/proyectos" class="footer-link">Proyectos</a>
+          <a href="/contactame" class="footer-link">Contacto</a>
+        </div>
+        <div class="footer-social">
+          <a href="mailto:dixson.apaza@tecsup.edu.pe" class="social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/yonay" target="_blank" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/dixsonapaza-ui" target="_blank" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Dixson Apaza. Desarrollado con <span class="heart">♥</span> usando Node.js &amp; Express</p>
+        <p class="footer-stack"><i class="fab fa-node-js"></i> Node.js + <i class="fab fa-html5"></i> EJS + <i class="fas fa-database"></i> Express</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<%- include('partials/head') %>
+
+<section class="relative min-h-screen flex items-center justify-center py-28 overflow-hidden">
+  <!-- Bg orbs -->
+  <div class="absolute inset-0 z-0">
+    <div class="orb w-[450px] h-[450px] -top-20 -right-20 bg-brand/20"></div>
+    <div class="orb w-72 h-72 -bottom-10 -left-10 bg-cyan/15" style="animation-delay:-3s"></div>
+    <div class="orb w-56 h-56 top-1/3 left-1/3 bg-green-500/10" style="animation-delay:-5s"></div>
+  </div>
+
+  <div class="relative z-10 max-w-xl mx-auto px-6 w-full">
+    <div class="reveal p-12 bg-dark-700 border border-white/[0.06] rounded-3xl text-center">
+
+      <!-- Success icon -->
+      <div class="relative w-24 h-24 mx-auto mb-8">
+        <div class="success-icon w-24 h-24 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white text-4xl shadow-glow-green">
+          <i class="fas fa-check"></i>
+        </div>
+        <div class="avatar-ring absolute border border-green-500/40" style="inset:-12px"></div>
+        <div class="avatar-ring absolute border border-green-500/20" style="inset:-24px;animation-delay:.5s"></div>
+      </div>
+
+      <h1 class="text-4xl font-black mb-3">¡Mensaje recibido! 🎉</h1>
+      <p class="text-lg font-semibold text-white mb-2">Muy pronto nos pondremos en contacto contigo.</p>
+      <p class="text-gray-400 leading-relaxed mb-8">
+        Gracias por escribirme. Revisaré tu mensaje y te responderé a la brevedad posible, generalmente dentro de las próximas <strong class="text-white">24 horas</strong>.
+      </p>
+
+      <!-- Details -->
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <div class="flex items-center gap-3 px-5 py-3 bg-dark-800 border border-white/[0.06] rounded-xl text-left">
+          <i class="fas fa-clock text-brand"></i>
+          <div>
+            <span class="block text-[10px] text-gray-500 uppercase tracking-widest">Tiempo de respuesta</span>
+            <span class="text-sm font-semibold">Menos de 24 horas</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 px-5 py-3 bg-dark-800 border border-white/[0.06] rounded-xl text-left">
+          <i class="fas fa-envelope text-brand"></i>
+          <div>
+            <span class="block text-[10px] text-gray-500 uppercase tracking-widest">Método de contacto</span>
+            <span class="text-sm font-semibold">Email o WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-3 justify-center mb-8">
+        <a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-hero hover:shadow-glow hover:-translate-y-0.5 transition-all"><i class="fas fa-home"></i> Ir al inicio</a>
+        <a href="/proyectos" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand border border-brand hover:bg-brand hover:text-white transition-all"><i class="fas fa-rocket"></i> Ver proyectos</a>
+      </div>
+
+      <p class="text-xs text-gray-500 mb-3">Mientras esperas, sígueme en:</p>
+      <div class="flex justify-center gap-3">
+        <a href="https://www.linkedin.com/in/yonay" target="_blank" class="flex flex-col items-center gap-1 px-5 py-3 bg-dark-800 border border-white/[0.06] rounded-xl text-gray-400 text-xs hover:text-brand hover:border-brand/40 hover:-translate-y-0.5 transition-all"><i class="fab fa-linkedin text-lg"></i>LinkedIn</a>
+        <a href="https://github.com/dixsonapaza-ui" target="_blank" class="flex flex-col items-center gap-1 px-5 py-3 bg-dark-800 border border-white/[0.06] rounded-xl text-gray-400 text-xs hover:text-brand hover:border-brand/40 hover:-translate-y-0.5 transition-all"><i class="fab fa-github text-lg"></i>GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/foot') %>

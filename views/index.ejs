@@ -1,0 +1,163 @@
+<%- include('partials/head') %>
+
+<!-- Hero -->
+<section class="relative min-h-screen flex items-center pt-[70px] overflow-hidden">
+  <!-- Bg -->
+  <div class="absolute inset-0 z-0">
+    <div class="hero-grid"></div>
+    <div class="orb w-[500px] h-[500px] -top-24 -right-24 bg-brand/30"></div>
+    <div class="orb w-[350px] h-[350px] -bottom-12 -left-12 bg-cyan/20" style="animation-delay:-3s"></div>
+    <div class="orb w-[220px] h-[220px] top-1/3 left-1/3 bg-pink/15" style="animation-delay:-5s;opacity:.15"></div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-20">
+    <div class="grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-20 items-center">
+    <!-- Left: text -->
+    <div>
+
+    <!-- Badge -->
+    <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand/30 bg-brand/10 text-brand text-sm font-medium mb-6">
+      <span class="w-2 h-2 rounded-full bg-green-400 pulse-dot"></span>
+      Disponible para nuevas oportunidades
+    </div>
+
+    <!-- Name -->
+    <p class="reveal text-lg text-gray-400 mb-1">Hola, soy</p>
+    <h1 class="reveal text-7xl sm:text-8xl font-black tracking-tight leading-none mb-4">
+      Dixson <span class="text-gradient">Apaza</span>
+    </h1>
+
+    <!-- Typewriter -->
+    <div class="reveal flex items-center gap-1 font-mono text-xl text-cyan-400 mb-5">
+      <span class="text-brand">&lt;</span>
+      <span id="typewriter"></span><span class="tw-cursor">|</span>
+      <span class="text-brand">/&gt;</span>
+    </div>
+
+    <p class="reveal max-w-xl text-gray-400 leading-relaxed mb-3">
+      Desarrollador Backend Junior especializado en <strong class="text-white">APIs REST</strong>,
+      <strong class="text-white">Django</strong> y <strong class="text-white">Node.js</strong>.
+      Apasionado por construir soluciones escalables y arquitecturas cliente-servidor robustas.
+    </p>
+
+    <p class="reveal flex items-center gap-2 text-gray-500 text-sm mb-8">
+      <i class="fas fa-map-marker-alt text-pink"></i> Arequipa, Perú
+    </p>
+
+    <!-- Actions -->
+    <div class="reveal flex flex-wrap gap-3 mb-10">
+      <a href="/proyectos" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-hero hover:shadow-glow hover:-translate-y-0.5 transition-all"><i class="fas fa-rocket"></i> Ver Proyectos</a>
+      <a href="/contactame" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand border border-brand hover:bg-brand hover:text-white transition-all"><i class="fas fa-paper-plane"></i> Contáctame</a>
+      <a href="/sobre-mi"  class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-gray-300 border border-white/10 bg-white/5 hover:bg-white/10 transition-all"><i class="fas fa-user"></i> Sobre mí</a>
+      <a href="<%= profile.github %>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-gray-300 border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-0.5 transition-all"><i class="devicon-github-original text-lg"></i> GitHub</a>
+    </div>
+
+    <!-- Tech tags -->
+    <div class="reveal flex flex-wrap gap-2">
+      <% [['devicon-python-plain','Python'],['devicon-django-plain','Django'],['devicon-nodejs-plain','Node.js'],['devicon-express-original','Express'],['devicon-mysql-plain','MySQL'],['devicon-git-plain','Git']].forEach(([icon,name])=>{ %>
+      <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dark-700 border border-white/[0.06] text-gray-400 text-sm hover:border-brand/40 hover:text-brand hover:-translate-y-0.5 transition-all cursor-default">
+        <i class="<%= icon %> colored text-base"></i> <%= name %>
+      </span>
+      <% }) %>
+    </div>
+    </div><!-- /left text col -->
+
+    <!-- Right: Photo -->
+    <div class="reveal hidden lg:flex items-center justify-center">
+      <div class="relative w-72 h-72">
+        <img src="/images/profile.jpg" alt="Dixson Apaza"
+          class="w-72 h-72 rounded-3xl object-cover object-top border-2 border-brand/30 shadow-glow" />
+        <!-- Floating badge -->
+        <div class="absolute -bottom-4 -left-4 flex items-center gap-2 px-4 py-2.5 bg-dark-700 border border-white/[0.06] rounded-2xl shadow-lg backdrop-blur-sm">
+          <span class="w-2 h-2 rounded-full bg-green-400 pulse-dot shrink-0"></span>
+          <span class="text-xs font-semibold text-white whitespace-nowrap">#OpenToWork</span>
+        </div>
+        <!-- Floating tech badge -->
+        <div class="absolute -top-4 -right-4 px-3 py-2 bg-brand/10 border border-brand/30 rounded-xl text-brand text-xs font-bold backdrop-blur-sm">
+          Backend Dev
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /grid -->
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint absolute bottom-8 left-1/2 flex flex-col items-center gap-2 text-gray-500 text-xs tracking-widest">
+    <span>Scroll</span>
+    <div class="w-px h-10 bg-gradient-to-b from-brand to-transparent"></div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="py-16 bg-dark-800 border-y border-white/[0.06]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <% [['2+','Proyectos Completados'],['5+','Tecnologías Dominadas'],['1+','Año de Experiencia'],['Top 5','Startup Concurso']].forEach(([n,l])=>{ %>
+      <div>
+        <span class="block text-4xl font-black text-gradient mb-1 stat-number"><%= n %></span>
+        <span class="text-sm text-gray-400 font-medium"><%= l %></span>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <span class="inline-block px-4 py-1 rounded-full text-xs font-semibold text-brand bg-brand/10 border border-brand/25 tracking-wide mb-3">⚡ Trabajo Reciente</span>
+      <h2 class="text-4xl font-black mb-3">Proyectos <span class="text-gradient">Destacados</span></h2>
+      <p class="text-gray-400">Una muestra de mi trabajo construyendo soluciones reales</p>
+    </div>
+
+    <div class="reveal grid sm:grid-cols-2 gap-5 mb-8">
+      <% projects.forEach(p=>{ %>
+      <div class="flex gap-4 p-5 bg-dark-700 border border-white/[0.06] rounded-2xl hover:border-brand/30 hover:-translate-y-1 hover:shadow-glow transition-all">
+        <span class="text-4xl leading-none shrink-0"><%= p.icon %></span>
+        <div>
+          <h3 class="font-bold text-base mb-1"><%= p.title %></h3>
+          <p class="text-sm text-gray-400 leading-relaxed mb-3"><%= p.description %></p>
+          <div class="flex flex-wrap gap-1.5">
+            <% p.tags.forEach(t=>{ %><span class="text-xs px-2 py-0.5 rounded-md bg-brand/10 text-brand border border-brand/20 font-semibold"><%= t %></span><% }) %>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <div class="reveal text-center">
+      <a href="/proyectos" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand border border-brand hover:bg-brand hover:text-white transition-all">Ver todos los proyectos <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- Skills marquee -->
+<section class="py-5 bg-dark-800 border-y border-white/[0.06] overflow-hidden">
+  <div class="overflow-hidden whitespace-nowrap">
+    <div class="banner-inner py-2 text-sm font-medium text-gray-400">
+      <% [['devicon-python-plain colored','Python'],['devicon-django-plain colored','Django'],['devicon-nodejs-plain colored','Node.js'],['devicon-express-original','Express'],['devicon-mysql-plain colored','MySQL'],['devicon-git-plain colored','Git'],['devicon-javascript-plain colored','JavaScript'],['fab fa-html5','HTML'],['fab fa-css3-alt','CSS'],['devicon-github-original','GitHub'],['devicon-python-plain colored','Python'],['devicon-django-plain colored','Django'],['devicon-nodejs-plain colored','Node.js'],['devicon-express-original','Express'],['devicon-mysql-plain colored','MySQL'],['devicon-git-plain colored','Git'],['devicon-javascript-plain colored','JavaScript'],['fab fa-html5','HTML'],['fab fa-css3-alt','CSS'],['devicon-github-original','GitHub']].forEach(([ic,n])=>{ %>
+      <span class="inline-flex items-center gap-2 mr-8"><i class="<%= ic %> text-lg"></i><%= n %></span>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal relative overflow-hidden bg-dark-700 border border-white/[0.06] rounded-3xl p-14 text-center">
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div class="w-96 h-96 rounded-full bg-brand/10 blur-3xl"></div>
+      </div>
+      <h2 class="relative text-4xl font-black mb-3">¿Tienes un proyecto en mente?</h2>
+      <p class="relative text-gray-400 text-lg mb-8">Estoy disponible para nuevas oportunidades y proyectos freelance. ¡Hablemos!</p>
+      <div class="relative flex flex-wrap gap-4 justify-center">
+        <a href="/contactame" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-hero hover:shadow-glow hover:-translate-y-0.5 transition-all"><i class="fas fa-envelope"></i> Escríbeme</a>
+        <a href="/proyectos" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand border border-brand hover:bg-brand hover:text-white transition-all"><i class="fas fa-eye"></i> Ver mi trabajo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/foot') %>

@@ -1,0 +1,28 @@
+{
+  "name": "portafolio-dixson-apaza",
+  "version": "1.0.0",
+  "description": "Portfolio personal de Dixson Apaza – Backend Developer Jr",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "backend",
+    "nodejs",
+    "express"
+  ],
+  "author": "Dixson Yonay Apaza Quilla",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "nodemailer": "^8.0.4"
+  },
+  "devDependencies": {
+    "xlsx": "^0.18.5"
+  }
+}

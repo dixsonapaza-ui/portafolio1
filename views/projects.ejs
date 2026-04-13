@@ -1,0 +1,63 @@
+<%- include('partials/head') %>
+
+<!-- Page Hero -->
+<section class="relative pt-28 pb-16 overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <div class="orb w-96 h-96 -top-20 -right-20 bg-brand/25"></div>
+    <div class="orb w-64 h-64 bottom-0 -left-10 bg-cyan/15" style="animation-delay:-3s"></div>
+  </div>
+  <div class="relative z-10 max-w-6xl mx-auto px-6 text-center reveal">
+    <span class="inline-block px-4 py-1 rounded-full text-xs font-semibold text-brand bg-brand/10 border border-brand/25 tracking-wide mb-4">🚀 Mi Trabajo</span>
+    <h1 class="text-5xl font-black mb-3">Mis <span class="text-gradient">Proyectos</span></h1>
+    <p class="text-gray-400 text-lg">Soluciones reales construidas con arquitecturas modernas y buenas prácticas</p>
+  </div>
+</section>
+
+<section class="py-16">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-6 mb-8">
+      <% projects.forEach(p=>{ %>
+      <div class="relative flex flex-col p-7 bg-dark-700 border <%= p.featured ? 'border-brand/30' : 'border-white/[0.06]' %> rounded-3xl hover:border-brand/50 hover:-translate-y-1.5 hover:shadow-glow transition-all">
+        <% if(p.featured){ %>
+        <span class="absolute top-5 right-5 inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-brand/10 text-brand border border-brand/25"><i class="fas fa-star"></i> Destacado</span>
+        <% } %>
+
+        <div class="flex items-start gap-4 mb-4">
+          <span class="text-4xl leading-none shrink-0"><%= p.icon %></span>
+          <div>
+            <h2 class="text-xl font-black mb-0.5"><%= p.title %></h2>
+            <span class="text-xs font-semibold text-brand"><%= p.subtitle %></span>
+          </div>
+        </div>
+
+        <p class="text-sm text-gray-400 leading-relaxed mb-4"><%= p.description %></p>
+
+        <ul class="flex flex-col gap-1.5 mb-6">
+          <% p.bullets.forEach(b=>{ %>
+          <li class="flex items-start gap-2 text-xs text-gray-400"><i class="fas fa-chevron-right text-brand mt-0.5 shrink-0 text-[10px]"></i><%= b %></li>
+          <% }) %>
+        </ul>
+
+        <div class="mt-auto flex items-center justify-between flex-wrap gap-3 pt-4 border-t border-white/[0.06]">
+          <div class="flex flex-wrap gap-1.5">
+            <% p.tags.forEach(t=>{ %><span class="text-xs px-2 py-0.5 rounded-md bg-brand/10 text-brand border border-brand/20 font-semibold"><%= t %></span><% }) %>
+          </div>
+          <a href="<%= p.link %>" class="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-hero text-white hover:shadow-glow hover:-translate-y-0.5 transition-all" target="_blank"><i class="fas fa-external-link-alt"></i> Ver proyecto</a>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <!-- Coming soon -->
+    <div class="reveal flex justify-center">
+      <div class="flex flex-col items-center gap-3 p-12 bg-dark-700 border border-dashed border-white/10 rounded-3xl text-center hover:border-brand/40 transition-colors max-w-md w-full">
+        <span class="text-4xl">⚡</span>
+        <h3 class="text-lg font-bold">Más proyectos en camino...</h3>
+        <p class="text-sm text-gray-400">Actualmente trabajando en nuevas soluciones con Django REST Framework y Next.js.</p>
+        <a href="/contactame" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-brand border border-brand hover:bg-brand hover:text-white transition-all"><i class="fas fa-envelope"></i> Contáctame</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/foot') %>
