@@ -4,11 +4,22 @@ const nodemailer = require('nodemailer');
 
 // ── Nodemailer transporter (Gmail) ───────────────────────────────────────────
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,          // SSL en puerto 465
   auth: {
     user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,
+    pass: (process.env.MAIL_PASS || '').replace(/\s/g, ''), // elimina espacios del App Password
   },
+  connectionTimeout: 10000,  // 10s máx para conectar
+  greetingTimeout:   5000,   // 5s máx para saludo SMTP
+  socketTimeout:     15000,  // 15s máx total
+});
+
+// Verificar conexión al arrancar
+transporter.verify((err) => {
+  if (err) console.warn('⚠️  Nodemailer no pudo conectar a Gmail:', err.message);
+  else     console.log('✉️  Nodemailer listo para enviar correos');
 });
 
 // Data - Dixson's Portfolio Info
