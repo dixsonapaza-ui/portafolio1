@@ -1,26 +1,10 @@
 const express  = require('express');
 const router   = express.Router();
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-// ── Nodemailer transporter (Gmail) ───────────────────────────────────────────
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,          // SSL en puerto 465
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: (process.env.MAIL_PASS || '').replace(/\s/g, ''), // elimina espacios del App Password
-  },
-  connectionTimeout: 10000,  // 10s máx para conectar
-  greetingTimeout:   5000,   // 5s máx para saludo SMTP
-  socketTimeout:     15000,  // 15s máx total
-});
-
-// Verificar conexión al arrancar
-transporter.verify((err) => {
-  if (err) console.warn('⚠️  Nodemailer no pudo conectar a Gmail:', err.message);
-  else     console.log('✉️  Nodemailer listo para enviar correos');
-});
+// ── Resend email client ───────────────────────────────────────────────────────
+const resend = new Resend(process.env.RESEND_API_KEY);
+console.log('✉️  Resend inicializado correctamente');
 
 // Data - Dixson's Portfolio Info
 const profile = {
@@ -219,33 +203,36 @@ router.get('/contactame', (req, res) => {
 router.post('/contactame', async (req, res) => {
   const { name, email, subject, message } = req.body;
 
-  const mailOptions = {
-    from: `"${name}" <${process.env.MAIL_USER}>`,
-    to:   process.env.MAIL_TO || 'dixson.apaza@tecsup.edu.pe',
-    replyTo: email,
-    subject: `[Portfolio] ${subject}`,
-    html: `
-      <div style="font-family:Inter,sans-serif;max-width:600px;margin:0 auto;background:#13131f;color:#f0f0f8;border-radius:16px;overflow:hidden;">
-        <div style="background:linear-gradient(135deg,#7c5cfc,#06b6d4);padding:28px 32px;">
-          <h1 style="margin:0;font-size:22px;color:#fff;">📬 Nuevo mensaje desde tu portafolio</h1>
-        </div>
-        <div style="padding:32px;">
-          <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:10px 0;color:#9898b8;font-size:13px;width:120px;">👤 Nombre</td><td style="padding:10px 0;font-weight:600;">${name}</td></tr>
-            <tr><td style="padding:10px 0;color:#9898b8;font-size:13px;">✉️ Email</td><td style="padding:10px 0;"><a href="mailto:${email}" style="color:#7c5cfc;">${email}</a></td></tr>
-            <tr><td style="padding:10px 0;color:#9898b8;font-size:13px;">📌 Asunto</td><td style="padding:10px 0;">${subject}</td></tr>
-          </table>
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:20px 0;" />
-          <h3 style="color:#9898b8;font-size:13px;margin-bottom:10px;">💬 Mensaje</h3>
-          <p style="line-height:1.7;white-space:pre-wrap;background:rgba(255,255,255,0.04);padding:16px;border-radius:10px;">${message}</p>
-          <p style="margin-top:28px;font-size:12px;color:#5a5a7a;">Responde directamente a este correo para contestar a ${name}.</p>
-        </div>
+  const htmlBody = `
+    <div style="font-family:Inter,sans-serif;max-width:600px;margin:0 auto;background:#13131f;color:#f0f0f8;border-radius:16px;overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#7c5cfc,#06b6d4);padding:28px 32px;">
+        <h1 style="margin:0;font-size:22px;color:#fff;">📬 Nuevo mensaje desde tu portafolio</h1>
       </div>
-    `,
-  };
+      <div style="padding:32px;">
+        <table style="width:100%;border-collapse:collapse;">
+          <tr><td style="padding:10px 0;color:#9898b8;font-size:13px;width:120px;">👤 Nombre</td><td style="padding:10px 0;font-weight:600;">${name}</td></tr>
+          <tr><td style="padding:10px 0;color:#9898b8;font-size:13px;">✉️ Email</td><td style="padding:10px 0;"><a href="mailto:${email}" style="color:#7c5cfc;">${email}</a></td></tr>
+          <tr><td style="padding:10px 0;color:#9898b8;font-size:13px;">📌 Asunto</td><td style="padding:10px 0;">${subject}</td></tr>
+        </table>
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:20px 0;" />
+        <h3 style="color:#9898b8;font-size:13px;margin-bottom:10px;">💬 Mensaje</h3>
+        <p style="line-height:1.7;white-space:pre-wrap;background:rgba(255,255,255,0.04);padding:16px;border-radius:10px;">${message}</p>
+        <p style="margin-top:28px;font-size:12px;color:#5a5a7a;">Responde directamente a este correo para contestar a ${name}.</p>
+      </div>
+    </div>
+  `;
 
   try {
-    await transporter.sendMail(mailOptions);
+    const { error } = await resend.emails.send({
+      from: 'Portfolio Dixson <onboarding@resend.dev>',
+      to:   [process.env.MAIL_TO || 'dixson.apaza@tecsup.edu.pe'],
+      replyTo: email,
+      subject: `[Portfolio] ${subject}`,
+      html: htmlBody,
+    });
+
+    if (error) throw new Error(error.message);
+
     res.redirect('/confirmacion');
   } catch (err) {
     console.error('❌ Error enviando correo:', err.message);
