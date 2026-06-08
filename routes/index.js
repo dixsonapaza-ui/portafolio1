@@ -50,20 +50,37 @@ const skills = {
     { name: 'Power BI',   label: 'Básico' }
   ],
   categories: [
-    { title: 'Lenguajes', icon: '💻', items: ['Python', 'JavaScript', 'HTML', 'CSS'] },
-    { title: 'Backend', icon: '⚙️', items: ['Django', 'Node.js', 'Express', 'Laravel'] },
-    { title: 'APIs', icon: '🔌', items: ['REST APIs', 'JSON', 'Postman', 'Endpoints'] },
-    { title: 'Bases de Datos', icon: '🗄️', items: ['MySQL', 'SQLite'] },
-    { title: 'Cloud & Deploy', icon: '☁️', items: ['Render', 'Vercel', 'Cold Start'] },
-    { title: 'Herramientas', icon: '🛠️', items: ['Git', 'GitHub', 'Postman'] },
-    { title: 'Data & ERP', icon: '📊', items: ['Power BI', 'Excel', 'SAP ERP (básico)'] },
-    { title: 'IA Aplicada', icon: '🤖', items: ['Claude', 'Antigravity', 'Automatización'] },
-    { title: 'Sistemas', icon: '🖥️', items: ['Windows', 'Linux'] }
+    { title: 'Lenguajes', icon: 'fas fa-code', items: ['Python', 'JavaScript', 'HTML', 'CSS'] },
+    { title: 'Backend', icon: 'fas fa-server', items: ['Django', 'Node.js', 'Express', 'Laravel'] },
+    { title: 'APIs', icon: 'fas fa-plug', items: ['REST APIs', 'JSON', 'Postman', 'Endpoints'] },
+    { title: 'Bases de Datos', icon: 'fas fa-database', items: ['MySQL', 'SQLite'] },
+    { title: 'Cloud & Deploy', icon: 'fas fa-cloud', items: ['Render', 'Vercel', 'Cold Start'] },
+    { title: 'Herramientas', icon: 'fas fa-toolbox', items: ['Git', 'GitHub', 'Postman'] },
+    { title: 'Data & ERP', icon: 'fas fa-chart-bar', items: ['Power BI', 'Excel', 'SAP ERP (básico)'] },
+    { title: 'IA Aplicada', icon: 'fas fa-robot', items: ['Claude', 'Antigravity', 'Automatización'] },
+    { title: 'Sistemas', icon: 'fas fa-desktop', items: ['Windows', 'Linux'] }
   ]
 };
 
 
 const projects = [
+  {
+    title: 'Tecnilink',
+    subtitle: 'Plataforma de Soporte Técnico',
+    tags: ['React', 'Node.js', 'Express', 'Prisma', 'PostgreSQL'],
+    description: 'Plataforma web académica para la gestión y resolución de solicitudes de soporte técnico. Permite la comunicación fluida entre clientes, técnicos y administradores con control de roles.',
+    bullets: [
+      'Arquitectura cliente-servidor desacoplada con frontend React y backend Express',
+      'Base de datos relacional PostgreSQL (Neon) integrada con ORM Prisma',
+      'Autenticación robusta y autorización basada en roles utilizando JWT',
+      'Pruebas de carga y estrés ejecutadas con k6 (smoke tests y simulaciones de usuarios virtuales)'
+    ],
+    link: 'https://tecnilink-frontend.vercel.app/',
+    github: 'https://github.com/dixsonapaza-ui/Tecnilink-Dixson',
+    color: 'project-purple',
+    icon: 'fas fa-tools',
+    featured: true
+  },
   {
     title: 'E-commerce Florería',
     subtitle: 'Arquitectura Cliente-Servidor',
@@ -78,7 +95,7 @@ const projects = [
     ],
     link: 'https://floreria-ecommerce.vercel.app/',
     color: 'project-green',
-    icon: '🌸',
+    icon: 'fas fa-shopping-bag',
     featured: true
   },
   {
@@ -93,12 +110,27 @@ const projects = [
     ],
     link: 'https://re-laptop-nksm.vercel.app/',
     color: 'project-blue',
-    icon: '💻',
+    icon: 'fas fa-laptop',
     featured: false
   }
 ];
 
 const experience = [
+  {
+    company: 'Tecnilink',
+    location: 'Arequipa, Perú',
+    role: 'Desarrollador Full Stack (Proyecto Académico)',
+    period: '2025',
+    type: 'Remoto',
+    bullets: [
+      'Diseño y desarrollo de una plataforma web para la gestión y resolución de solicitudes de soporte técnico.',
+      'Implementación de una arquitectura desacoplada con frontend en React y backend con Node.js y Express.',
+      'Configuración de bases de datos PostgreSQL con Prisma ORM y autenticación robusta mediante JWT.',
+      'Optimización de endpoints realizando pruebas de carga y estrés con k6.'
+    ],
+    icon: 'fas fa-tools',
+    link: 'https://tecnilink-frontend.vercel.app/'
+  },
   {
     company: 'CubyxSur',
     location: 'Juliaca, Perú',
@@ -110,7 +142,7 @@ const experience = [
       'Instalación de sistemas operativos y configuración de redes',
       'Resolución de incidencias técnicas en entornos reales de usuario'
     ],
-    icon: '🔧'
+    icon: 'fas fa-cogs'
   },
   {
     company: "Hotel Tikary's",
@@ -123,7 +155,7 @@ const experience = [
       'Coordinación de operaciones y soporte al equipo',
       'Gestión eficiente en entornos de alta demanda'
     ],
-    icon: '🏨'
+    icon: 'fas fa-hotel'
   }
 ];
 
@@ -136,7 +168,7 @@ const education = [
     status: 'En curso',
     description: 'Formación técnica superior en desarrollo de software con enfoque práctico en tecnologías backend, bases de datos y despliegue en la nube.',
     highlights: ['Backend Development', 'APIs REST', 'Bases de Datos SQL', 'Cloud Deploy'],
-    icon: '🎓'
+    icon: 'fas fa-graduation-cap'
   }
 ];
 
