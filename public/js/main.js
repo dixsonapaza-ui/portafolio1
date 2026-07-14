@@ -1,192 +1,262 @@
-/* ── main.js ── Dixson Apaza Portfolio ───────────────────────────────── */
+/* ── main.js ── Dixson Apaza Portfolio - Studio Œ Aesthetic ──────────────── */
 'use strict';
 
-// ─── Cursor Glow ────────────────────────────────────────────────────────────
-const cursorGlow = document.getElementById('cursorGlow');
-if (cursorGlow) {
-  document.addEventListener('mousemove', (e) => {
-    cursorGlow.style.left = e.clientX + 'px';
-    cursorGlow.style.top  = e.clientY + 'px';
+(function () {
+  // ── Hero video/image load ──
+  window.addEventListener('load', () => {
+    const v = document.querySelector('.hero-video');
+    if (v) v.classList.add('loaded');
   });
-}
 
-// ─── Navbar Scroll Effect ────────────────────────────────────────────────────
-const navbar = document.getElementById('navbar');
-if (navbar) {
-  const onScroll = () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-}
+  // ── Hero entrance animations ──
+  setTimeout(() => {
+    const eb = document.querySelector('.hero-eyebrow');
+    if (eb) eb.classList.add('is-in');
+  }, 250);
 
-// ─── Mobile Nav Toggle ───────────────────────────────────────────────────────
-const navToggle = document.getElementById('navToggle');
-const navLinks  = document.getElementById('navLinks');
-if (navToggle && navLinks) {
-  navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('open');
-    navLinks.classList.toggle('open');
-    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  document.querySelectorAll('.hero-word').forEach((w, i) => {
+    setTimeout(() => w.classList.add('is-in'), 400 + i * 130);
   });
-  // Close on link click
-  navLinks.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('open');
-      navLinks.classList.remove('open');
-      document.body.style.overflow = '';
+
+  setTimeout(() => {
+    const s = document.querySelector('.hero-sub');
+    const c = document.querySelector('.hero-cta');
+    const actions = document.querySelector('.hero-actions-container');
+    if (s) s.classList.add('is-in');
+    if (c) c.classList.add('is-in');
+    if (actions) actions.classList.add('is-in');
+  }, 1300);
+
+  // ── Mobile Nav Toggle ──
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  if (navToggle && mobileNav) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
     });
-  });
-}
 
-// ─── Scroll Reveal ───────────────────────────────────────────────────────────
-const revealElements = document.querySelectorAll('.reveal');
-if (revealElements.length) {
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          // Stagger siblings
-          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
-          let delay = 0;
-          siblings.forEach((el, idx) => {
-            if (el === entry.target) delay = idx * 80;
-          });
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, delay);
-          revealObserver.unobserve(entry.target);
-        }
+    // Close on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
       });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
-  revealElements.forEach(el => revealObserver.observe(el));
-}
+    });
+  }
 
-// ─── Typewriter Effect ───────────────────────────────────────────────────────
-const typewriterEl = document.getElementById('typewriter');
-if (typewriterEl) {
-  const texts = [
-    'Backend Developer Jr',
-    'APIs REST Builder',
-    'Django & Node.js Dev',
-    'Cloud Deploy Enthusiast',
-    'Problem Solver'
-  ];
-  let tIdx = 0, cIdx = 0, deleting = false;
+  // ── Navbar scrolled effect ──
+  const navbar = document.querySelector('nav');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+  }
 
-  const type = () => {
-    const current = texts[tIdx];
-    if (!deleting) {
-      typewriterEl.textContent = current.slice(0, ++cIdx);
-      if (cIdx === current.length) { deleting = true; setTimeout(type, 2200); return; }
-    } else {
-      typewriterEl.textContent = current.slice(0, --cIdx);
-      if (cIdx === 0) { deleting = false; tIdx = (tIdx + 1) % texts.length; }
-    }
-    setTimeout(type, deleting ? 55 : 85);
-  };
-  setTimeout(type, 600);
-}
+  // ── Footer wordmark per-char splitting ──
+  const wm = document.getElementById('footer-wordmark');
+  if (wm) {
+    const txt = wm.textContent;
+    wm.innerHTML = '';
+    txt.split('').forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'footer-char';
+      s.textContent = ch === ' ' ? '\u00A0' : ch;
+      wm.appendChild(s);
+    });
+    wm.setAttribute('aria-label', txt);
+  }
 
-// ─── Skill Bar Animation ─────────────────────────────────────────────────────
-const skillBars = document.querySelectorAll('.skill-bar-fill');
-if (skillBars.length) {
-  const barObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const bar = entry.target;
-          const level = bar.dataset.level;
-          setTimeout(() => {
-            bar.style.width = level + '%';
-          }, 200);
-          barObserver.unobserve(bar);
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-  skillBars.forEach(bar => barObserver.observe(bar));
-}
-
-// ─── Contact Form UX ─────────────────────────────────────────────────────────
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  const submitBtn = document.getElementById('submitBtn');
-  contactForm.addEventListener('submit', (e) => {
-    if (submitBtn) {
-      const label     = submitBtn.querySelector('span');
-      const icon      = submitBtn.querySelector('i:not(.fa-spinner)');
-      const loader    = submitBtn.querySelector('.btn-loader');
-      if (label) label.textContent = 'Enviando...';
-      if (icon)  icon.style.display = 'none';
-      if (loader) loader.style.display = 'inline-flex';
-      submitBtn.disabled = true;
-    }
-  });
-
-  // Live input feedback
-  contactForm.querySelectorAll('.form-input, .form-textarea').forEach(input => {
-    input.addEventListener('blur', () => {
-      const wrapper = input.closest('.form-group');
-      if (wrapper) {
-        wrapper.classList.toggle('has-error', !input.validity.valid && input.value !== '');
-        wrapper.classList.toggle('is-valid', input.validity.valid && input.value !== '');
+  // ── IntersectionObserver for static entrance animations ──
+  const enterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        enterObs.unobserve(entry.target);
       }
     });
-  });
-}
+  }, { threshold: 0.01 });
 
-// ─── Smooth page transitions ─────────────────────────────────────────────────
-document.querySelectorAll('a[href^="/"]').forEach(link => {
-  link.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
-    if (href === window.location.pathname) return;
-    e.preventDefault();
-    document.body.style.opacity = '0';
-    document.body.style.transform = 'translateY(8px)';
-    document.body.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-    setTimeout(() => { window.location.href = href; }, 250);
-  });
-});
+  document.querySelectorAll('.footer-rule, .footer-elevation').forEach(el => enterObs.observe(el));
 
-// Fade-in al cargar Y al volver con el botón atrás (bfcache fix)
-const fadeInPage = () => {
-  document.body.style.opacity = '1';
-  document.body.style.transform = 'translateY(0)';
-  document.body.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-};
+  const wmObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.footer-char').forEach((c, i) => {
+          setTimeout(() => c.classList.add('is-in'), i * 80);
+        });
+        wmObs.disconnect();
+      }
+    });
+  }, { threshold: 0.01 });
+  if (wm) wmObs.observe(wm);
 
-// pageshow se dispara tanto en carga normal como al restaurar desde bfcache
-window.addEventListener('pageshow', (e) => {
-  fadeInPage();
-});
+  // ── rAF scroll loop ──
+  let ticking = false;
 
-// ─── Count-up Animation for Stats ───────────────────────────────────────────
-const statNumbers = document.querySelectorAll('.stat-number');
-if (statNumbers.length) {
-  const countObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const text = el.textContent;
-          const num = parseFloat(text);
-          if (!isNaN(num)) {
-            let start = 0;
-            const step = num / 40;
-            const timer = setInterval(() => {
-              start += step;
-              if (start >= num) { el.textContent = text; clearInterval(timer); return; }
-              el.textContent = (text.includes('+') ? Math.floor(start) + '+' : Math.floor(start));
-            }, 30);
-          }
-          countObserver.unobserve(el);
+  function updateScrollProgress() {
+    ticking = false;
+
+    // SECTION 1 — Sticky-stack mapping
+    const stackWrap = document.getElementById('stack-wrapper');
+    if (stackWrap) {
+      const panels = stackWrap.querySelectorAll('.stack-panel');
+      const wrapRect = stackWrap.getBoundingClientRect();
+      const wrapTop = wrapRect.top + window.scrollY;
+      const wrapH = wrapRect.height;
+      const scrollIntoWrap = window.scrollY - wrapTop;
+      const usableScroll = wrapH - window.innerHeight;
+      const progress = Math.max(0, Math.min(0.9999, scrollIntoWrap / usableScroll));
+      const N = panels.length;
+      
+      const activeIdx = Math.min(N - 1, Math.floor(progress * N));
+      panels.forEach((p, i) => {
+        p.classList.toggle('in-view', i <= activeIdx);
+        p.classList.toggle('dim', i < activeIdx);
+      });
+      const cur = document.getElementById('stack-current');
+      if (cur) cur.textContent = String(activeIdx + 1).padStart(2, '0');
+    }
+
+    // SECTION 2 — Pinned split text swap
+    const splitSec = document.querySelector('.split-section');
+    if (splitSec) {
+      const r = splitSec.getBoundingClientRect();
+      const top = r.top + window.scrollY;
+      const h = r.height - window.innerHeight;
+      const p = Math.max(0, Math.min(1, (window.scrollY - top) / h));
+      const N = 3;
+      const idx = Math.min(N - 1, Math.floor(p * N + 0.0001));
+
+      // Swap active class on images
+      document.querySelectorAll('.split-img').forEach((img, i) => {
+        if (i === idx) img.classList.add('active');
+        else img.classList.remove('active');
+      });
+
+      // Swap active class on text panels
+      document.querySelectorAll('.split-panel').forEach((panel, i) => {
+        if (i === idx) panel.classList.add('active');
+        else panel.classList.remove('active');
+      });
+
+      // Swap active class on progress dots
+      document.querySelectorAll('.split-progress-dot').forEach((d, i) => {
+        if (i === idx) d.classList.add('active');
+        else d.classList.remove('active');
+      });
+
+      const cur = document.getElementById('split-current');
+      if (cur) cur.textContent = String(idx + 1).padStart(2, '0');
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateScrollProgress);
+      ticking = true;
+    }
+  }, { passive: true });
+  updateScrollProgress();
+
+  // ── Section 3: Cursor-tracked list preview ──
+  const cursorSection = document.getElementById('experience');
+  const cursorPreview = document.getElementById('cursor-preview');
+  const cursorPreviewImg = document.getElementById('cursor-preview-img');
+  const cursorDot = document.getElementById('cursor-dot');
+  const cursorList = document.getElementById('cursor-list');
+
+  if (cursorSection && cursorPreview && cursorDot && cursorList) {
+    let inSection = false;
+    let currentItem = null;
+    let targetX = 0, targetY = 0;
+    let curX = 0, curY = 0;
+
+    // Preload preview images
+    cursorList.querySelectorAll('.cursor-item').forEach(item => {
+      const src = item.getAttribute('data-img');
+      if (src) { const im = new Image(); im.src = src; }
+    });
+
+    function setPreviewVars(x, y) {
+      cursorPreview.style.setProperty('--x', x + 'px');
+      cursorPreview.style.setProperty('--y', y + 'px');
+      cursorDot.style.setProperty('--x', x + 'px');
+      cursorDot.style.setProperty('--y', y + 'px');
+    }
+
+    function tick() {
+      curX += (targetX - curX) * 0.18;
+      curY += (targetY - curY) * 0.18;
+      setPreviewVars(curX, curY);
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    cursorSection.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    cursorSection.addEventListener('mouseenter', () => {
+      inSection = true;
+      cursorDot.classList.add('is-in-section');
+    });
+
+    cursorSection.addEventListener('mouseleave', () => {
+      inSection = false;
+      cursorDot.classList.remove('is-in-section');
+      cursorPreview.classList.remove('is-visible');
+      currentItem = null;
+    });
+
+    cursorList.querySelectorAll('.cursor-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        const src = item.getAttribute('data-img');
+        if (src && cursorPreviewImg.getAttribute('src') !== src) {
+          cursorPreviewImg.setAttribute('src', src);
+        }
+        cursorPreview.classList.add('is-visible');
+        currentItem = item;
+      });
+
+      item.addEventListener('mouseleave', () => {
+        if (currentItem === item) {
+          cursorPreview.classList.remove('is-visible');
+          currentItem = null;
         }
       });
-    },
-    { threshold: 0.5 }
-  );
-  statNumbers.forEach(el => countObserver.observe(el));
-}
+
+      item.addEventListener('click', () => {
+        const href = item.getAttribute('data-href');
+        if (href) {
+          const el = document.querySelector(href);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
+  // ── Contact Form Submission UX ──
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    const submitBtn = document.getElementById('submitBtn');
+    contactForm.addEventListener('submit', () => {
+      if (submitBtn) {
+        const label = submitBtn.querySelector('span');
+        if (label) label.textContent = 'Enviando...';
+        submitBtn.disabled = true;
+      }
+    });
+  }
+
+  // ── Global fallback for animation states (only if IntersectionObserver is not supported) ──
+  if (!window.IntersectionObserver) {
+    document.querySelectorAll('.footer-rule, .footer-elevation, .footer-char').forEach(el => {
+      el.classList.add('is-in');
+    });
+  }
+
+})();

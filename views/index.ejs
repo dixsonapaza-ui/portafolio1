@@ -1,166 +1,179 @@
 <%- include('partials/head') %>
 
-<!-- Hero -->
-<section class="relative min-h-screen flex items-center pt-[70px] overflow-hidden">
-  <!-- Bg -->
-  <div class="absolute inset-0 z-0">
-    <div class="hero-grid"></div>
-    <div class="orb w-[500px] h-[500px] -top-24 -right-24 bg-brand/30"></div>
-    <div class="orb w-[350px] h-[350px] -bottom-12 -left-12 bg-cyan/20" style="animation-delay:-3s"></div>
-    <div class="orb w-[220px] h-[220px] top-1/3 left-1/3 bg-pink/15" style="animation-delay:-5s;opacity:.15"></div>
-  </div>
-
-  <div class="relative z-10 max-w-6xl mx-auto px-6 py-20">
-    <div class="grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-20 items-center">
-    <!-- Left: text -->
-    <div>
-
-    <!-- Badge -->
-    <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand/30 bg-brand/10 text-brand text-sm font-medium mb-6">
-      <span class="w-2 h-2 rounded-full bg-green-400 pulse-dot"></span>
-      Disponible para nuevas oportunidades
-    </div>
-
-    <!-- Name -->
-    <p class="reveal text-lg text-gray-400 mb-1">Hola, soy</p>
-    <h1 class="reveal text-7xl sm:text-8xl font-black tracking-tight leading-none mb-4">
-      Dixson <span class="text-gradient">Apaza</span>
-    </h1>
-
-    <!-- Typewriter -->
-    <div class="reveal flex items-center gap-1 font-mono text-xl text-cyan-400 mb-5">
-      <span class="text-brand">&lt;</span>
-      <span id="typewriter"></span><span class="tw-cursor">|</span>
-      <span class="text-brand">/&gt;</span>
-    </div>
-
-    <p class="reveal max-w-xl text-gray-400 leading-relaxed mb-3">
-      Desarrollador Backend Junior especializado en <strong class="text-white">APIs REST</strong>,
-      <strong class="text-white">Django</strong> y <strong class="text-white">Node.js</strong>.
-      Apasionado por construir soluciones escalables y arquitecturas cliente-servidor robustas.
-    </p>
-
-    <p class="reveal flex items-center gap-2 text-gray-500 text-sm mb-8">
-      <i class="fas fa-map-marker-alt text-pink"></i> Arequipa, Perú
-    </p>
-
-    <!-- Actions -->
-    <div class="reveal flex flex-wrap gap-3 mb-10">
-      <a href="/proyectos" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-hero hover:shadow-glow hover:-translate-y-0.5 transition-all"><i class="fas fa-rocket"></i> Ver Proyectos</a>
-      <a href="/contactame" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand border border-brand hover:bg-brand hover:text-white transition-all"><i class="fas fa-paper-plane"></i> Contáctame</a>
-      <a href="/sobre-mi"  class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-gray-300 border border-white/10 bg-white/5 hover:bg-white/10 transition-all"><i class="fas fa-user"></i> Sobre mí</a>
-      <a href="<%= profile.github %>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-gray-300 border border-white/10 bg-white/5 hover:bg-white/10 hover:-translate-y-0.5 transition-all"><i class="devicon-github-original text-lg"></i> GitHub</a>
-    </div>
-
-    <!-- Tech tags -->
-    <div class="reveal flex flex-wrap gap-2">
-      <% [['devicon-python-plain','Python'],['devicon-django-plain','Django'],['devicon-nodejs-plain','Node.js'],['devicon-express-original','Express'],['devicon-mysql-plain','MySQL'],['devicon-git-plain','Git']].forEach(([icon,name])=>{ %>
-      <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dark-700 border border-white/[0.06] text-gray-400 text-sm hover:border-brand/40 hover:text-brand hover:-translate-y-0.5 transition-all cursor-default">
-        <i class="<%= icon %> colored text-base"></i> <%= name %>
-      </span>
-      <% }) %>
-    </div>
-    </div><!-- /left text col -->
-
-    <!-- Right: Photo -->
-    <div class="reveal hidden lg:flex items-center justify-center">
-      <div class="relative w-72 h-72">
-        <img src="/images/profile.jpg" alt="Dixson Apaza"
-          class="w-72 h-72 rounded-3xl object-cover object-top border-2 border-brand/30 shadow-glow" />
-        <!-- Floating badge -->
-        <div class="absolute -bottom-4 -left-4 flex items-center gap-2 px-4 py-2.5 bg-dark-700 border border-white/[0.06] rounded-2xl shadow-lg backdrop-blur-sm">
-          <span class="w-2 h-2 rounded-full bg-green-400 pulse-dot shrink-0"></span>
-          <span class="text-xs font-semibold text-white whitespace-nowrap">#OpenToWork</span>
-        </div>
-        <!-- Floating tech badge -->
-        <div class="absolute -top-4 -right-4 px-3 py-2 bg-brand/10 border border-brand/30 rounded-xl text-brand text-xs font-bold backdrop-blur-sm">
-          Backend Dev
+  <!-- Hero Section -->
+  <section class="hero">
+    <svg class="water-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <filter id="water-distort" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="turbulence" baseFrequency="0.014 0.038" numOctaves="2" seed="3" result="turb">
+          <animate attributeName="baseFrequency" dur="16s" values="0.014 0.038;0.018 0.044;0.013 0.036;0.014 0.038" repeatCount="indefinite"></animate>
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="turb" scale="14" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+      </filter>
+    </svg>
+    <video class="hero-video" autoplay loop muted playsinline poster="/images/hero.png" onerror="this.style.display='none'">
+      <source src="/images/minimalist.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-right-meta">QA Testing · Cypress · REST APIs · Full Stack</div>
+    <div class="hero-meta">
+      <p class="hero-eyebrow">QA Tester Junior | Full Stack Developer</p>
+      <h1 class="hero-headline">
+        <span class="hero-word">Dixson</span>
+        <span class="hero-word">Yonay</span>
+        <span class="hero-word">Apaza</span>
+        <span class="hero-word">Quilla</span>
+      </h1>
+      <p class="hero-sub"><%= profile.bio %></p>
+      <div class="hero-actions-container">
+        <a class="hero-cta" href="#work">Ver Proyectos <span class="hero-cta-arrow">→</span></a>
+        <div class="hero-cv-downloads">
+          <a class="hero-cv-btn" href="/cv-preview/fullstack" target="_blank"><i class="fas fa-file-download"></i> CV Full Stack</a>
+          <a class="hero-cv-btn" href="/cv-preview/qatester" target="_blank"><i class="fas fa-file-download"></i> CV QA Tester</a>
         </div>
       </div>
     </div>
+    <div class="hero-coord">16.4°S / 71.5°W · Arequipa, Perú</div>
+  </section>
 
-    </div><!-- /grid -->
+  <!-- Projects Section (Sticky Stacking Panels) -->
+  <section class="stack-section" id="work">
+    <div class="stack-wrapper" id="stack-wrapper">
+      <div class="stack-pin">
+        <div class="stack-counter"><span class="current" id="stack-current">01</span>/ 03 — Proyectos Destacados</div>
 
-  <!-- Scroll hint -->
-  <div class="scroll-hint absolute bottom-8 left-1/2 flex flex-col items-center gap-2 text-gray-500 text-xs tracking-widest">
-    <span>Scroll</span>
-    <div class="w-px h-10 bg-gradient-to-b from-brand to-transparent"></div>
-  </div>
-</section>
-
-<!-- Stats -->
-<section class="py-16 bg-dark-800 border-y border-white/[0.06]">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <% [['2+','Proyectos Completados'],['5+','Tecnologías Dominadas'],['1+','Año de Experiencia'],['Top 5','Startup Concurso']].forEach(([n,l])=>{ %>
-      <div>
-        <span class="block text-4xl font-black text-gradient mb-1 stat-number"><%= n %></span>
-        <span class="text-sm text-gray-400 font-medium"><%= l %></span>
-      </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
-
-<!-- Featured Projects -->
-<section class="py-20">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-14 reveal">
-      <span class="inline-block px-4 py-1 rounded-full text-xs font-semibold text-brand bg-brand/10 border border-brand/25 tracking-wide mb-3"><i class="fas fa-bolt mr-1"></i> Trabajo Reciente</span>
-      <h2 class="text-4xl font-black mb-3">Proyectos <span class="text-gradient">Destacados</span></h2>
-      <p class="text-gray-400">Una muestra de mi trabajo construyendo soluciones reales</p>
-    </div>
-
-    <div class="reveal grid sm:grid-cols-2 gap-5 mb-8">
-      <% projects.forEach(p=>{ %>
-      <a href="<%= p.link %>" target="_blank" class="flex gap-4 p-5 bg-dark-700 border border-white/[0.06] rounded-2xl hover:border-brand/30 hover:-translate-y-1 hover:shadow-glow transition-all block">
-        <span class="text-2xl text-white leading-none shrink-0 flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-2xl"><i class="<%= p.icon %>"></i></span>
-        <div class="w-full">
-          <div class="flex items-center justify-between mb-1">
-            <h3 class="font-bold text-base text-white hover:text-brand transition-colors"><%= p.title %></h3>
-            <i class="fas fa-external-link-alt text-xs text-gray-500 hover:text-brand transition-colors"></i>
+        <% projects.forEach((p, idx) => { %>
+          <div class="stack-panel" data-tone="<%= (idx % 3) + 1 %>" data-side="<%= idx % 2 === 0 ? 'left' : 'right' %>" data-idx="<%= idx %>">
+            <div class="stack-inner">
+              <div class="stack-img">
+                <img src="<%= p.image %>" alt="<%= p.title %>" loading="lazy" onerror="this.style.display='none'">
+              </div>
+              <div class="stack-text">
+                <p class="stack-eyebrow">Proyecto · <%= p.year %></p>
+                <p class="stack-index">№ 0<%= idx + 1 %> / 03</p>
+                <h2 class="stack-title"><%= p.title %></h2>
+                <p class="stack-cat"><%= p.cat %></p>
+                <p class="stack-desc"><%= p.description %></p>
+                <ul class="stack-bullets">
+                  <% p.bullets.forEach(bullet => { %>
+                    <li><%= bullet %></li>
+                  <% }) %>
+                </ul>
+                <a href="<%= p.link %>" target="_blank" class="stack-link">Visitar Proyecto →</a>
+              </div>
+            </div>
           </div>
-          <p class="text-sm text-gray-400 leading-relaxed mb-3"><%= p.description %></p>
-          <div class="flex flex-wrap gap-1.5">
-            <% p.tags.forEach(t=>{ %><span class="text-xs px-2 py-0.5 rounded-md bg-brand/10 text-brand border border-brand/20 font-semibold"><%= t %></span><% }) %>
-          </div>
+        <% }) %>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About, Skills & Education (Pinned Split Text Swap) -->
+  <section class="split-section" id="about">
+    <div class="split-pin">
+      <div class="split-visuals" id="split-visuals">
+        <div class="split-counter">
+          <span class="current" id="split-current">01</span><span class="total">/03</span>
         </div>
-      </a>
-      <% }) %>
-    </div>
-
-    <div class="reveal text-center">
-      <a href="/proyectos" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand border border-brand hover:bg-brand hover:text-white transition-all">Ver todos los proyectos <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </div>
-</section>
-
-<!-- Skills marquee -->
-<section class="py-5 bg-dark-800 border-y border-white/[0.06] overflow-hidden">
-  <div class="overflow-hidden whitespace-nowrap">
-    <div class="banner-inner py-2 text-sm font-medium text-gray-400">
-      <% [['devicon-python-plain colored','Python'],['devicon-django-plain colored','Django'],['devicon-nodejs-plain colored','Node.js'],['devicon-express-original','Express'],['devicon-mysql-plain colored','MySQL'],['devicon-git-plain colored','Git'],['devicon-javascript-plain colored','JavaScript'],['fab fa-html5','HTML'],['fab fa-css3-alt','CSS'],['devicon-github-original','GitHub'],['devicon-python-plain colored','Python'],['devicon-django-plain colored','Django'],['devicon-nodejs-plain colored','Node.js'],['devicon-express-original','Express'],['devicon-mysql-plain colored','MySQL'],['devicon-git-plain colored','Git'],['devicon-javascript-plain colored','JavaScript'],['fab fa-html5','HTML'],['fab fa-css3-alt','CSS'],['devicon-github-original','GitHub']].forEach(([ic,n])=>{ %>
-      <span class="inline-flex items-center gap-2 mr-8"><i class="<%= ic %> text-lg"></i><%= n %></span>
-      <% }) %>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="py-20">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="reveal relative overflow-hidden bg-dark-700 border border-white/[0.06] rounded-3xl p-14 text-center">
-      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div class="w-96 h-96 rounded-full bg-brand/10 blur-3xl"></div>
+        <img src="/images/YOconTernito.jpg" alt="Dixson Apaza" class="split-img active" data-idx="0">
+        <img src="/images/skills.png" alt="Habilidades" class="split-img" data-idx="1">
+        <img src="/images/education-stack.png" alt="Educación" class="split-img" data-idx="2">
       </div>
-      <h2 class="relative text-4xl font-black mb-3">¿Tienes un proyecto en mente?</h2>
-      <p class="relative text-gray-400 text-lg mb-8">Estoy disponible para nuevas oportunidades y proyectos freelance. ¡Hablemos!</p>
-      <div class="relative flex flex-wrap gap-4 justify-center">
-        <a href="/contactame" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-hero hover:shadow-glow hover:-translate-y-0.5 transition-all"><i class="fas fa-envelope"></i> Escríbeme</a>
-        <a href="/proyectos" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand border border-brand hover:bg-brand hover:text-white transition-all"><i class="fas fa-eye"></i> Ver mi trabajo</a>
+      <div class="split-text-wrap">
+        <p class="split-section-label">Sobre Mí &amp; Habilidades · 3 Capítulos</p>
+        <div class="split-panels">
+
+          <!-- Panel 1: Profile -->
+          <div class="split-panel active" data-idx="0">
+            <p class="split-eyebrow">Capítulo · 01</p>
+            <h3 class="split-title">Desarrollador Backend.</h3>
+            <p class="split-desc"><%= profile.bio %></p>
+            <ul class="split-deliverables">
+              <% profile.highlights.forEach(highlight => { %>
+                <li><%= highlight %></li>
+              <% }) %>
+            </ul>
+            <div class="cv-download-group">
+              <a href="/cv-preview/fullstack" class="cv-btn" target="_blank"><i class="fas fa-file-download"></i> CV Full Stack</a>
+              <a href="/cv-preview/qatester" class="cv-btn secondary" target="_blank"><i class="fas fa-file-download"></i> CV QA Tester</a>
+            </div>
+          </div>
+
+          <!-- Panel 2: Skills -->
+          <div class="split-panel" data-idx="1">
+            <p class="split-eyebrow">Capítulo · 02</p>
+            <h3 class="split-title">Habilidades Técnicas.</h3>
+            <p class="split-desc">Domino un ecosistema moderno para el desarrollo de APIs robustas, integrando lenguajes, frameworks y bases de datos eficientes.</p>
+            
+            <div class="split-skills-grid">
+              <div class="split-skill-item">
+                <i class="fab fa-python"></i>
+                <span>Python / Django</span>
+              </div>
+              <div class="split-skill-item">
+                <i class="fab fa-node-js"></i>
+                <span>Node.js / Express</span>
+              </div>
+              <div class="split-skill-item">
+                <i class="fas fa-database"></i>
+                <span>SQL / MySQL / SQLite</span>
+              </div>
+              <div class="split-skill-item">
+                <i class="fab fa-git-alt"></i>
+                <span>Git / GitHub / CI-CD</span>
+              </div>
+            </div>
+
+            <ul class="split-deliverables">
+              <li>Frameworks: Django, Express, Laravel</li>
+              <li>Bases de datos: MySQL, SQLite, PostgreSQL</li>
+              <li>Testing: Postman, k6 (Load Testing)</li>
+            </ul>
+          </div>
+
+          <!-- Panel 3: Education -->
+          <div class="split-panel" data-idx="2">
+            <p class="split-eyebrow">Capítulo · 03</p>
+            <h3 class="split-title">Educación y Formación.</h3>
+            <% education.forEach(edu => { %>
+              <p class="split-desc"><strong><%= edu.institution %></strong> — <%= edu.degree %> (<%= edu.period %>). <%= edu.description %></p>
+              <ul class="split-deliverables">
+                <% edu.highlights.forEach(hl => { %>
+                  <li><%= hl %></li>
+                <% }) %>
+              </ul>
+            <% }) %>
+          </div>
+
+        </div>
+        <div class="split-progress">
+          <div class="split-progress-dot active" data-idx="0"></div>
+          <div class="split-progress-dot" data-idx="1"></div>
+          <div class="split-progress-dot" data-idx="2"></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Experience Section (Cursor-Tracked List Preview) -->
+  <section class="cursor-section" id="experience">
+    <div class="cursor-section-header">
+      <p class="cursor-eyebrow">Proyectos & Experiencia · 2024 — Presente</p>
+      <h2 class="cursor-heading">Trayectoria laboral y<br>proyectos desarrollados.</h2>
+    </div>
+    <ul class="cursor-list" id="cursor-list">
+      <% experience.forEach((exp, idx) => { %>
+        <li class="cursor-item" data-img="<%= exp.image %>" data-href="#experience-details" data-idx="<%= idx %>">
+          <span class="cursor-num">/ 0<%= idx + 1 %></span>
+          <span class="cursor-name"><%= exp.company %></span>
+          <span class="cursor-year"><%= exp.role %> · <%= exp.period %></span>
+        </li>
+      <% }) %>
+    </ul>
+    <div class="cursor-preview" id="cursor-preview">
+      <img id="cursor-preview-img" alt="">
+    </div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+  </section>
 
 <%- include('partials/foot') %>
