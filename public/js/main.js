@@ -21,10 +21,8 @@
   setTimeout(() => {
     const s = document.querySelector('.hero-sub');
     const c = document.querySelector('.hero-cta');
-    const actions = document.querySelector('.hero-actions-container');
     if (s) s.classList.add('is-in');
     if (c) c.classList.add('is-in');
-    if (actions) actions.classList.add('is-in');
   }, 1300);
 
   // ── Mobile Nav Toggle ──
